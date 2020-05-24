@@ -16,9 +16,9 @@ cap set maxvar 32000
 
 
 // download data from github:
-use "https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/PPMLFEBIAS_EXAMPLE_DATA.dta?raw=true" if category=="TOTAL", clear // can change category to "MANUF" or "NONMANUF"
+use "https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/PPMLFEBIAS_EXAMPLE_DATA.dta?raw=true" if category=="MANUF", clear // can change category to "NONMANUF" or "TOTAL"
 
-// Aggregate trade between 65 countries for the years 1986 - 2004, every four years.
+// Manufacturing trade between 65 countries for the years 1986 - 2004, every four years.
 
 // Sources:
 //  - Trade: UN COMTRADE
