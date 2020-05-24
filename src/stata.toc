@@ -1,0 +1,5 @@
+v 3
+p ppml_fe_bias Bias corrections for PPML models with multi-way (two-way or three-way) fixed effects
+
+* Author: Thomas Zylkin. University of Richmond
+* Support: tzylkin@richmond.edu
