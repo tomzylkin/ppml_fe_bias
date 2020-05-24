@@ -12,7 +12,7 @@ Weidern, Martin & Thomas Zylkin: “Bias and Consistency in Three-way Gravity Mo
 
 ## Installation
 
-`ppml_fe_bias` requires the latest versions of [`hdfe`](https://github.com/sergiocorreia/ftools) and [`gtools`](https://github.com/sergiocorreia/reghdfe), [`rowmat_utils`](), and [`frmttable`]() 
+`ppml_fe_bias` requires the latest versions of [`hdfe`](https://ideas.repec.org/c/boc/bocode/s457985.html), [`gtools`](https://gtools.readthedocs.io/en/latest/), [`rowmat_utils`](https://ideas.repec.org/c/boc/bocode/s457888.html), and [`frmttable`](https://ideas.repec.org/c/boc/bocode/s375201.html) 
 
 An SSC version that can be downloaded from the SSC repository within Stata will be available soon.
 
