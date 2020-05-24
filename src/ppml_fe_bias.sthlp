@@ -31,7 +31,7 @@
 
 {p 8 8 2}{it: exp_id}, {it: imp_id}, and {it: time_id} are variables that respectively identify 
 the origin, destination, and time period associated with each observation. "lambda" is an input for the conditional mean
-of each observation. For more details, see the {browse "http://www.tomzylkin.com/uploads/4/1/0/4/41048809/help_file__ppml_fe_bias_.pdf":online version of this help file}.{p_end}
+of each observation. For more details, see the {browse "https://github.com/tomzylkin/ppml_fe_bias/blob/master/help%20file%20(ppml_fe_bias).pdf":online version of this help file}.{p_end}
 
 {marker description}{...}
 {title:Description}
@@ -111,7 +111,7 @@ trade agreements and other similar policy variables and is currently recommended
 {pstd}Weidner and Zylkin (2020)'s analysis identifies several econometric issues that arise with the three-way model, but their method for correcting the
 standard errors of the three-way model also can be adapted to address a similar issue with the two-way model. Focusing on the three-way model for now,
 it is important to recognize that the first-order conditions of PPML allow us to "profile out" the pair fixed effect a_ij from the model without biasing the scores of the other parameters
-(see the {browse "http://www.tomzylkin.com/uploads/4/1/0/4/41048809/help_file__ppml_fe_bias_.pdf":online version of this help file} for more details.)
+(see the {browse "https://github.com/tomzylkin/ppml_fe_bias/blob/master/help%20file%20(ppml_fe_bias).pdf":online version of this help file} for more details.)
 Three-way PPML therefore has the nice property that it is consistent despite the large number of fixed effects, whereas other popular alternatives (OLS, Gamma PML) 
 can be shown to be inconsistent in this setting. At the same time, the
 two-way representation of the model also brings to mind the results from Fernández-Val & Weidner (2016) for the
@@ -142,7 +142,7 @@ as originally shown by Fernández-Val & Weidner (2016).{p_end}
 {marker examples}{...}
 {title:Examples}
 
-{pstd}These examples follow {browse "http://www.tomzylkin.com/uploads/4/1/0/4/41048809/example_do_file.do":sample .do file} included along with this command. 
+{pstd}These examples follow {browse "https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/EXAMPLE%20DO%20FILE%20(ppml_fe_bias).do":sample .do file} included along with this command. 
 The data set used in this .do file
 consists of a panel of 35 countries trading with one another over the years 1988-2004, using every 4 years. The
 trade data uses aggregated trade flows from UN COMTRADE, with information on FTAs taken from the {browse "https://sites.nd.edu/jeffrey-bergstrand/database-on-economic-integration-agreements/": NSF-Kellogg database}
@@ -171,7 +171,7 @@ make a meaningful difference for hypothesis testing in general cases. Consistent
 Zylkin (2020), the estimated standard error is also found to be biased: the bias-corrected standard error is about
 20% larger than the uncorrected standard error, and the lower bound of the estimated 95% confidence interval
 after both of these corrections are applied is substantially lower than what would be found otherwise (0.086 versus
-0.109). While these results were obtained for a relatively small number of countries (I=J=35), it is important to note that Weidner & Zylkin (2020)’s results imply that the magnitudes of
+0.109). While these results were obtained for a moderate number of countries (I=J=65), it is important to note that Weidner & Zylkin (2020)’s results imply that the magnitudes of
 these biases are likely to depend significantly on the distribution of the data, even for ostensibly large data sets. Thus, it 
 is recommended researchers implement these checks whenever feasible as a matter of good practice.{p_end}
 
@@ -199,7 +199,7 @@ standard table-formatting commands such as {cmd:estout} or {cmd:estimates table}
 {pstd}{bf:Approximation for the adjusted variance}. Depending on the size of the data, it may be necessary to use an
 approximation method to compute the necessary bias correction for the cluster-robust variance matrix. Because
 the details behind this approximation are mathematically complex, they have been left for the 
-{browse "http://www.tomzylkin.com/uploads/4/1/0/4/41048809/help_file__ppml_fe_bias_.pdf":online version of this help file}. In brief, the method
+{browse "https://github.com/tomzylkin/ppml_fe_bias/blob/master/help%20file%20(ppml_fe_bias).pdf":online version of this help file}. In brief, the method
 involves constructing a convergent sequence for the variance correction based on alternating projections and taking the result after the first few iterations.
 Doing so manages to avoid any large matrix operations that would otherwise be necessary and generally yields a reasonable approximation that still leads to significantly
 improved inferences. For researchers who would prefer not to use this approximation, the "exact" option may be used to force {cmd:ppml_fe_bias} to calculate the adjusted variance directly.{p_end}
