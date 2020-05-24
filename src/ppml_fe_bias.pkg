@@ -1,0 +1,27 @@
+v 3
+
+d 'PPML_FE_BIAS': Bias corrections for PPML models with multi-way (two-way or three-way) fixed effects
+d
+d ppml_fe_bias implements bias corrections for Poisson pseudo-maximum likelihood (PPML) 
+d regressions with two-way and three-way fixed effects, as described by Weidner & Zylkin (2020).
+d
+d KW: poisson
+d KW: pseudo maximum likelihood
+d KW: fixed effects
+d KW: panel data
+d KW: incidental parameter problem
+d KW: asymptotic bias correction
+d KW: gravity model
+d KW: network models
+d KW: spatial models
+d
+d Requires: Stata version 13.1
+d Required packages: hdfe, gtools, outreg, rowmat_utils
+d
+d Author: Thomas Zylkin. University of Richmond
+d Support: tzylkin@richmond.edu
+d
+d Distribution-Date: 20200524
+d
+f ppml_fe_bias.ado
+f ppml_fe_bias.sthlp
