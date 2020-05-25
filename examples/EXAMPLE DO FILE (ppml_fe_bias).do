@@ -25,11 +25,10 @@ use "https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/PPMLFEBIAS_E
 // 	- FTAs:  NSF-Kellogg (Baier & Bergstrand) database
 //  - "gravity" variables: CEPII (Head, Mayer, and Ries) gravity data
 
-
 // estimate the average partial effect of an FTA on total trade
 cap egen imp=group(isoimp)
 cap egen exp=group(isoexp)
-ppmlhdfe trade fta, a(imp#year exp#year imp#exp) cluster(imp#exp) d             // ssc install ppmlhdfe, replace
+ppmlhdfe trade fta, a(imp#year exp#year imp#exp) cluster(imp#exp) d             // install: "ssc install ppmlhdfe, replace"
 
 // save lambda values
 predict lambda
@@ -38,11 +37,9 @@ predict lambda
 matrix beta = e(b)
 
 // compute bias corrections
-cap program drop ppml_fe_bias
 ppml_fe_bias trade fta, i(exp) j(imp) t(year) lambda(lambda)
 
 // create a results table
-cap program drop ppml_fe_bias
 ppml_fe_bias trade fta, i(exp) j(imp) t(year) lambda(lambda) beta(beta)
 
 // twoway example
@@ -51,5 +48,4 @@ ppmlhdfe trade ln_distw contig colony comlang_off comleg fta, a(imp#year exp#yea
 predict lambda_2way
 matrix beta_2way = e(b)
 
-cap program drop ppml_fe_bias
 ppml_fe_bias trade ln_distw contig colony comlang_off comleg fta, i(exp) j(imp) t(year) lambda(lambda_2way) twoway beta(beta_2way)
