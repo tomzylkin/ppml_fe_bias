@@ -8,7 +8,7 @@
 
 ## Example output
 
-<p align="center"><img src="https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/figures/example%20output%20(3%20way).png?raw=true" alt="example output" width="100%"/></p>
+<p align="center"><img src="https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/figures/example%20output%20(3%20way).png?raw=true" alt="example output" width="85%"/></p>
 
 ## Citation
 
