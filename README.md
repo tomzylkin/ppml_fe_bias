@@ -27,7 +27,7 @@ cap ado uninstall ppml_fe_bias
 net install ppml_fe_bias, from("https://raw.githubusercontent.com/tomzylkin/ppml_fe_bias/master/src") 
 ```
 
-You can then access a help file with more information in the standard way by typing
+After installing, you can then access a help file with more information in the standard way by typing
 
 ```stata
 help ppml_fe_bias 
