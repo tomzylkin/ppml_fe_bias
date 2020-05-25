@@ -21,9 +21,9 @@ use "https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/PPMLFEBIAS_E
 // Manufacturing trade between 65 countries for the years 1986 - 2004, every four years.
 
 // Sources:
-//  - Trade: UN COMTRADE
-// 	- FTAs:  NSF-Kellogg (Baier & Bergstrand) database
-//  - "gravity" variables: CEPII (Head, Mayer, and Ries) gravity data
+// - Trade: UN COMTRADE
+// - FTAs:  NSF-Kellogg (Baier & Bergstrand) database
+// - "gravity" variables: CEPII (Head, Mayer, and Ries) gravity data
 
 // estimate the average partial effect of an FTA on total trade
 cap egen imp=group(isoimp)
