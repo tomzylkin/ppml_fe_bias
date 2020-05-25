@@ -144,7 +144,7 @@ as originally shown by Fernández-Val & Weidner (2016).{p_end}
 
 {pstd}These examples follow {browse "https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/EXAMPLE%20DO%20FILE%20(ppml_fe_bias).do":sample .do file} included along with this command. 
 The data set used in this .do file
-consists of a panel of 35 countries trading with one another over the years 1988-2004, using every 4 years. The
+consists of a panel of 65 countries trading with one another over the years 1988-2004, using every 4 years. The
 trade data uses aggregated trade flows from UN COMTRADE, with information on FTAs taken from the {browse "https://sites.nd.edu/jeffrey-bergstrand/database-on-economic-integration-agreements/": NSF-Kellogg database}
 maintained by Scott Baier and Jeff Bergstrand and other covariates taken from the CEPII gravity
 data set created by Head, Mayer, & Ries (2010). The computation of the PPML regression relies on the {browse "https://ideas.repec.org/c/boc/bocode/s458622.html":ppmlhdfe}
