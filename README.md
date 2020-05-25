@@ -26,3 +26,13 @@ For now, you can install the latest version from Github:
 cap ado uninstall ppml_fe_bias
 net install ppml_fe_bias, from("https://raw.githubusercontent.com/tomzylkin/ppml_fe_bias/master/src") 
 ```
+
+You can then access a help file with more information in the standard way by typing
+
+```stata
+help ppml_fe_bias 
+```
+
+An online version of this help file with additional details is also available [here](https://github.com/tomzylkin/ppml_fe_bias/blob/master/help%20file%20(ppml_fe_bias).pdf). 
+
+
