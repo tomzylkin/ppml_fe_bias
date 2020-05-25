@@ -32,7 +32,7 @@ For now, you can install the latest version from Github:
 
 ```stata
 cap ado uninstall ppml_fe_bias
-net install ppml_fe_bias, from("https://raw.githubusercontent.com/tomzylkin/ppml_fe_bias/master/src") 
+net install ppml_fe_bias, from("https://raw.githubusercontent.com/tomzylkin/ppml_fe_bias/master/src") replace
 ```
 
 After installing, you can then access a help file with more information in the standard way by typing
