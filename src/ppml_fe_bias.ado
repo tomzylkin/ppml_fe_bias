@@ -9,6 +9,8 @@ program define ppml_fe_bias, eclass
 *! "Bias and Consistency in Three-way Gravity Models"
 *! arXiv preprint arXiv:1909.01327.
 
+version 13.1
+
 syntax varlist [if] [in], ///
 		lambda(varname)  			///
 		i(varname)                  ///
