@@ -37,7 +37,7 @@ of each observation. For more details, see the {browse "https://github.com/tomzy
 {title:Description}
 
 {pstd}
-{cmd:ppml_fe_bias}  implements analytical bias corrections described in Weidner & Zylkin (2020) for PPML "gravity"
+{cmd:ppml_fe_bias}  implements analytical bias corrections described in {browse "https://arxiv.org/abs/1909.01327":Weidner & Zylkin (2020)} for PPML "gravity"
 regressions with two-way and three-way fixed effects, as are commonly used with international trade data and other types
 of spatial flows. As shown by Weidner & Zylkin (2020), when the time dimension is fixed, the point estimates produced by
 the three-way PPML gravity model have an asymptotic incidental parameter bias of order 1/N, where N is the number of countries,
@@ -72,7 +72,7 @@ errors.
 {synopt: {opt approx}}If “approx” is enabled, the bias correction for the variance will be computed using an approximation.
 By default, this approximation is used whenever the number of origin-time and
 destination-time fixed effects exceeds 1000 in order to facilitate computation and to avoid
-running up against memory constraints.
+running up against memory constraints. This approximation is only used with three-way models.
 
 {synopt: {opt exact}}Use an exact method for computing the bias-corrected variance, even if the number of origintime
 and destination-time fixed effects exceeds 1000.
