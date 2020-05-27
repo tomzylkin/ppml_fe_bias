@@ -26,12 +26,15 @@ Weidner, Martin & Thomas Zylkin: “Bias and Consistency in Three-way Gravity Mo
 
 `ppml_fe_bias` requires the latest versions of [`hdfe`](https://ideas.repec.org/c/boc/bocode/s457985.html), [`gtools`](https://gtools.readthedocs.io/en/latest/), [`rowmat_utils`](https://ideas.repec.org/c/boc/bocode/s457888.html), and [`frmttable`](https://ideas.repec.org/c/boc/bocode/s375201.html) 
 
-An SSC version that can be downloaded from the SSC repository within Stata will be available soon.
-
-For now, you can install the latest version from Github:
+To install from within Stata, there are two options. To install the latest version from the official SSC repository, type
 
 ```stata
-cap ado uninstall ppml_fe_bias
+ssc install ppml_fe_bias, replace
+```
+
+Or, to install from github, type:
+
+```stata
 net install ppml_fe_bias, from("https://raw.githubusercontent.com/tomzylkin/ppml_fe_bias/master/src") replace
 ```
 
