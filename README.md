@@ -6,6 +6,9 @@
 
 **ppml_fe_bias** is a Stata package that implements analytical bias corrections described in [Weidner and Zylkin (2020)](https://arxiv.org/abs/1909.01327) for PPML “gravity” regressions with two-way and three-way fixed effects, as are commonly used with international trade data and other types of spatial flows. As shown in [Weidner and Zylkin (2020)](https://arxiv.org/abs/1909.01327), when the time dimension is fixed, the point estimates produced by the three-way PPML gravity model have an asymptotic incidental parameter bias of order `1/N`, where `N` is the number of countries, and the cluster-robust sandwich estimator that is typically used for inference itself has a downward bias that is also of order `1/N`. For the two-way PPML gravity model, only the standard errors are biased.
 
+## Recent updates
+- **v.1.1 June 2, 2020**. Leverage calculations are now faster and more memory-efficient. Fixed a bug for two-way models. Streamlined code in other places and made some comments clearer.
+
 ## Example output
 
 Three-way fixed effects example
