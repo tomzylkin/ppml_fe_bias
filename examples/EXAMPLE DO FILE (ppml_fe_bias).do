@@ -5,10 +5,6 @@
 *! arXiv preprint arXiv:1909.01327
 
 clear all
-*global this_dir  "E:\Google drive\TOM LOCAL\Bias and Consistency FE PPML\Code\files to upload"
-global this_dir   "C:\Users\ztom\Google Drive\TOM LOCAL\Bias and Consistency FE PPML\Code\files to upload"
-
-cd "$this_dir"
 
 cap set matsize 800
 cap set matsize 11000
