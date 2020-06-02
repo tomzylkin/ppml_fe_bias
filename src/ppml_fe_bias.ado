@@ -1,4 +1,4 @@
-program define ppml_fe_bias_june2020, eclass
+program define ppml_fe_bias, eclass
 
 *! Stata package for correcting inferences from two-way and three-way FE-PPML models
 *! contact: Tom Zylkin
