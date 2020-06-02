@@ -71,11 +71,11 @@ errors.
 
 {synopt: {opt approx}}If “approx” is enabled, the bias correction for the variance will be computed using an approximation.
 By default, this approximation is used whenever the number of origin-time and
-destination-time fixed effects exceeds 1000 in order to facilitate computation and to avoid
+destination-time fixed effects exceeds 1500 in order to facilitate computation and to avoid
 running up against memory constraints. This approximation is only used with three-way models.
 
 {synopt: {opt exact}}Use an exact method for computing the bias-corrected variance, even if the number of origintime
-and destination-time fixed effects exceeds 1000.
+and destination-time fixed effects exceeds 1500.
 
 {synopt: {opt notable}}Suppress results table.
 
@@ -212,7 +212,7 @@ gravity model. I would recommend either Yotov, Piermartini, Monteiro, & Larch (2
 & Zylkin (2019) for further reading on these topics. For essential reading on two-way gravity estimation, see
 Head & Mayer (2014).{p_end}
 
-{pstd}This is version 1.0 of this command. Depending
+{pstd}This is version 1.1 of this command. Depending
 on interest, future versions of this command could add further options for multi-way clustering, multi-industry
 models, and/or dynamic models. If you believe you have found an error that can be
 replicated, or have other suggestions for improvements, please feel free to {browse "mailto:tomzylkin@gmail.com":contact me}.{p_end}
