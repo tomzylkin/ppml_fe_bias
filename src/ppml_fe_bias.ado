@@ -1,16 +1,15 @@
-program define ppml_fe_bias, eclass
+program define ppml_fe_bias_june2020, eclass
 
 *! Stata package for correcting inferences from two-way and three-way FE-PPML models
 *! contact: Tom Zylkin
 *! Department of Economics, University of Richmond
-*! This version: v1.0, February 2020
+*! This version: v1.1, June 2020
 *!
 *! Suggested citation: Weidner, Martin and Thomas Zylkin (2020): 
 *! "Bias and Consistency in Three-way Gravity Models"
 *! arXiv preprint arXiv:1909.01327.
 
 version 13.1
-
 syntax varlist [if] [in], ///
 		lambda(varname)  			///
 		i(varname)                  ///
@@ -143,7 +142,7 @@ if "`exact'" == "" & "`approx'" == "" & "`twoway'" == ""  {
 	
 	local n_twoway_fes = `n_i'*`n_t' + `n_j'*`n_t'
 	
-	if `n_twoway_fes' > 1000 {
+	if `n_twoway_fes' > 1500 {
 		local approx = "approx"
 	}
 }
@@ -388,11 +387,6 @@ void analyticalbiascorrection(string scalar demeaned_x, string scalar i_var,
 	N_j_1 = NN_panels/N_i
 	N_i_1 = NN_panels/N_j
 	
-	
-	// fill out panels with missing years
-	index =  T :* (vars[.,4]:-1) :+ vars[.,3]
-	tempvars = J(NNT, 3+K, 0)
-	
 	if(approx_lev=="approx") {
 		// fill out panels with missing years
 		index =  T :* (vars[.,4]:-1) :+ vars[.,3]
@@ -428,7 +422,7 @@ void analyticalbiascorrection(string scalar demeaned_x, string scalar i_var,
 	
 	
 	// have to assume all t are populated (balanced panels) for this to work
-	s_equals_t = (t # J(1, T, 1) :== uniq_t')
+	s_equals_t = J(NN_panels,1,1)#I(T)
 	
 	// t_equals_s is an (NNT) x T matrix with entries equal to 1 when s=t, where s indexes columns.
 	
@@ -529,11 +523,14 @@ void analyticalbiascorrection(string scalar demeaned_x, string scalar i_var,
 		else{
 
 			// sort of a fast xi / egen to construct within-transformed sets of it- and jt- dummies
-			d_t   = (t # J(1, T, 1) :== uniq_t')
+			temp = s_equals_t - colshape(theta_ij,T)#J(T,1,1)
 
+			/*
+			d_t   = (t # J(1, T, 1) :== uniq_t')
 			temp = colshape(rowsum(theta_ij :* d_t),T)#J(T,1,1) 
 			temp = d_t - temp
-
+			*/
+			
 			d_it_tilde = J(NNT,N_i*T,0)
 			d_jt_tilde = J(NNT,N_j*T,0)
 
@@ -555,9 +552,9 @@ void analyticalbiascorrection(string scalar demeaned_x, string scalar i_var,
 			// This can be shown to be equal to inv (sum_ij (d_ij' H_ij d_ij))
 			V_FE = invsym((d_tilde:*lambda)' * (d_tilde))
 
-			// Next, we need d_ij V_FE d_ij' 
+			// Next, we need d_ij V_FE d_ij' (though actually we only need the TxT blocks that lie along the diagonal!)
 			//   - d_ijt  is NNT x F  (NN vertically stacked T x F matrices)
-			//   - V_FE   is F x F    (NN stacked T x F matrices)
+			//   - V_FE   is F x F    
 			//   - d_ijt' is F x NNT  (NN horizontally stacked F x T matrices)
 
 			// d_ijt x V_F gives me another NNT x F matrix. 
@@ -570,16 +567,27 @@ void analyticalbiascorrection(string scalar demeaned_x, string scalar i_var,
 			//                         sum_f {d_ij2,f V_f1} d_ij2,1 sum_f {d_ij2,f V_f2)d_ij2,2 sum_f {d_ij2,f V_f3} d_ij2,3 ... 
 			//                         sum_f {d_ij3,f V_f1} d_ij3,1 sum_f {d_ij3,f V_f2)d_ij3,2 sum_f {d_ij3,f V_f3} d_ij3,3 ... 
 	
-			// Finding the rowsum then gives you the main diagonal.
+			// Finding the rowsum then gives you the main diagonal of d_ij V_FE d_ij'
 			// To get the full outer product, pull apart the lefthand side so that it repeats.
 			// For the right-hand side, reshape, pull apart, then reshape again.
 	
-			tempd = colshape(d_ijt, T*cols(d_ijt))#J(T,1,1)
-			tempd = colshape(tempd, cols(d_ijt))
+			dVd  = J(NN_panels, T*T,0)
+			dV    = d_ijt * V_FE
+			dVd[.,(0..(T-1))*T :+ (1..(T))] = colshape(rowsum(dV :* d_ijt),T)
 	
-			dVd = rowsum( ((d_ijt * V_FE) # J(T,1,1)) :* tempd)
-	
-			dVd = colshape(dVd, T*T)
+			for (u=2; u <= T; u++) {
+				dVd[.,(0..(T-u))*T :+ (u..(T))] = colshape(rowsum(dV[selectindex(t:<(T-u+2)),.] :* d_ijt[selectindex(t:>(u-1)),.]),T-(u-1))	
+		
+				if(u==2) {
+					idx1 = ((u-1)..(T-1))*T:+(u-1)
+					idx2 = (u-2):+(u..T)
+				}
+				else{
+				idx1 = idx1,((u-1)..(T-1))*T:+(u-1)
+				idx2 = idx2,(u-2)*T:+(u..T)
+				}
+			}
+			dVd[.,idx1] = dVd[.,idx2]  // this is the NN TxT blocks that lie aloneg the diagonal of d_ij V_FE d_ij'; each TxT block is laid out as a (TxT)x1 vector.
 		}
 	}
 
@@ -887,20 +895,36 @@ void twowayse_correction(string scalar demeaned_x, string scalar i_var,
 		// To get the full outer product, pull apart the lefthand side so that it repeats.
 		// For the right-hand side, reshape, pull apart, then reshape again.
 		
-		tempd = colshape(d_ijt, T*cols(d_ijt))#J(T,1,1)
-		tempd = colshape(tempd, cols(d_ijt))
+		dVd  = J(NN_panels, T*T,0)
+		dV    = d_ijt * V_FE
+		dVd[.,(0..(T-1))*T :+ (1..(T))] = colshape(rowsum(dV :* d_ijt),T)
+		
+		/* // unnecessary; all off-diagonal terms in each of these TxT blocks are zero.
+		if (T>=2) {
+			for (u=2; u <= T; u++) {
+				dVd[.,(0..(T-u))*T :+ (u..(T))] = colshape(rowsum(dV[selectindex(t:<(T-u+2)),.] :* d_ijt[selectindex(t:>(u-1)),.]),T-(u-1))	
 	
-		dVd = rowsum( ((d_ijt * V_FE) # J(T,1,1)) :* tempd)
-	
-		dVd = colshape(dVd, T*T)
+				if(u==2) {
+					idx1 = ((u-1)..(T-1))*T:+(u-1)
+					idx2 = (u-2):+(u..T)
+				}
+				else{
+					idx1 = idx1,((u-1)..(T-1))*T:+(u-1)
+				idx2 = idx2,(u-2)*T:+(u..T)
+				}
+			}
+			dVd[.,idx1] = dVd[.,idx2]  // this is the NN TxT blocks that lie aloneg the diagonal of d_ij V_FE d_ij'; each TxT block is laid out as a (TxT)x1 vector.
+		}
+		*/
 	}
 	else {
 		alt_order     = order((i,j,t), (3,1,2))
+				
 		alt_inv_order = invorder(alt_order)     
 		alt_i = i[alt_order]
 		alt_j = j[alt_order]
 		alt_lambda  = lambda[alt_order,.] 
-		
+				
 		for (k=1; k <= T; k++) {
 			t_index = (NN_panels*(k-1)+1..NN_panels*k)
 
@@ -919,7 +943,7 @@ void twowayse_correction(string scalar demeaned_x, string scalar i_var,
 				dVd_alt  = dVd_alt \ rowsum( (alt_d_ijt * V_FE_t ) :* alt_d_ijt)
 			}
 		}
-		dVd = dVd[alt_inv_order,.]
+		dVd = dVd_alt[alt_inv_order,.]
 		dVd = colshape(dVd :* (J(NN_panels,1,1) # I(T)), T*T)
 	}
 	
