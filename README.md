@@ -1,6 +1,6 @@
 # `ppml_fe_bias`: bias corrections for two-way and three-way fixed effects PPML models
 
-- Current version: `1.1 02jun2020`
+- Current version: `1.2 06mar2021`
 - Jump to: [`citation`](#citation) [`example output`](#example-output) [`install`](#installation)
 - Also see: [Help file](https://github.com/tomzylkin/ppml_fe_bias/blob/master/help%20file%20(ppml_fe_bias).pdf) | [Examples](https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/EXAMPLE%20DO%20FILE%20(ppml_fe_bias).do) | [`ado file`](https://github.com/tomzylkin/ppml_fe_bias/blob/master/src/ppml_fe_bias.ado) | [`ppmlhdfe`](https://github.com/sergiocorreia/ppmlhdfe) 
 
