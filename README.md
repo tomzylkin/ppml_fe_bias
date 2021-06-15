@@ -1,4 +1,4 @@
-# `ppml_fe_bias`: bias corrections for two-way and three-way fixed effects PPML models
+# `ppml_fe_bias`: bias corrections for two-way and three-way fixed effects models estimated via PPML
 
 - Current version: `1.2 06mar2021`
 - Jump to: [`citation`](#citation) [`example output`](#example-output) [`install`](#installation)
