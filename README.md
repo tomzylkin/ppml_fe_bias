@@ -42,18 +42,18 @@ Or, to install from github, type:
 net install ppml_fe_bias, from("https://raw.githubusercontent.com/tomzylkin/ppml_fe_bias/master/src") replace
 ```
 
-After installing, you can then access a help file with more information in the standard way by typing
-
-```stata
-help ppml_fe_bias 
-```
-
 You will also need to make sure the following packages are installed:
 ```stata
 ssc install outreg, replace
 ssc install hdfe, replace
 ssc install gtools, replace
 ssc install rowmat_utils, replace
+```
+
+After installing, you can then access a help file with more information in the standard way by typing
+
+```stata
+help ppml_fe_bias 
 ```
 
 An online version of this help file with additional details is also available [here](https://github.com/tomzylkin/ppml_fe_bias/blob/master/help%20file%20(ppml_fe_bias).pdf). 
