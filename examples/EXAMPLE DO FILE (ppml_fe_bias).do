@@ -10,6 +10,18 @@ cap set matsize 800
 cap set matsize 11000
 cap set maxvar 32000
 
+// To install package run this code
+/*
+ssc install ppml_fe_bias, replace
+*/
+
+// Before running ppml_fe_bias for the first time, you will also need to install the following:
+/*
+ssc install outreg, replace
+ssc install hdfe, replace
+ssc install gtools, replace
+ssc install rowmat_utils, replace
+*/
 
 // download data from github:
 use "https://github.com/tomzylkin/ppml_fe_bias/blob/master/examples/PPMLFEBIAS_EXAMPLE_DATA.dta?raw=true" if category=="MANUF", clear // can change category to "NONMANUF" or "TOTAL"
